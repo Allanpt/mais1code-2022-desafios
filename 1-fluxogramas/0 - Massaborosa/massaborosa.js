@@ -24,20 +24,29 @@ const cardapio = () => {
 const adicionarNovosItens = (item) => {
     listaDoCardapio.push(item)
     return "Item adicionado"
+    
 }
 const removerItensCardapio = () => {
     
     let saborQueSeraExcluido;
     leia.question("Qual item você quer remover? ", input => {
         saborQueSeraExcluido = input;
-        console.log(typeof saborQueSeraExcluido)
+        let saborQueSeraExcluidoEmMinusculo = saborQueSeraExcluido.toLowerCase()
+        for(let i = 0; i < listaDoCardapio.length; i++){
+            if(saborQueSeraExcluidoEmMinusculo == listaDoCardapio[i].toLowerCase()){
+                delete listaDoCardapio[i]
+                console.log()
+                console.log(`O sabor de '${saborQueSeraExcluido}'foi removido com sucesso do cardápio`)
+            }
+        }
         leia.close()
-
-    
-
     })
 }
-const adicionarPedidos = () => { }
+const adicionarPedidos = () => { 
+    let sabor;
+    let quantidade;
+    
+}
 const verListaDePedidos = () => { }
 const verListaDeFuncionarios = () => { }
 const adicionarNovoFuncionarioNaLista = () => { }
@@ -46,3 +55,4 @@ const removerFuncionarioNaLista = () => { }
 console.log(cardapio())
 console.log(adicionarNovosItens("Bauru"))
 console.log(removerItensCardapio())
+
