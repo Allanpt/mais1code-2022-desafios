@@ -11,7 +11,7 @@ Quero poder ver a lista de funcionários.
 Quero poder adicionar um novo funcionário a lista de funcionários.
 Quero poder remover um funcionário da lista de funcionários.
 */
-let listaDoCardapio = ["Calabresa", "Portuguesa", "Mussarela", "Frango", "Atum"] 
+let listaDoCardapio = ["Calabresa", "Portuguesa", "Mussarela", "Frango", "Atum"]
 
 let leia = require('readline').createInterface({
     input: process.stdin,
@@ -28,34 +28,39 @@ leia.question(`Olá, o que deseja?
     6 - Ver lista de funcionários
     7 - Adicionar novo funcionário
     8 - Remover funcionário
+    9 - SAIR
     
-    `, input => {
-    
+    Digite um número: `, input => {
+
     opcao = Number(input);
-    if(opcao == 1) {
+    if (opcao == 1) {
         console.log()
         console.log(cardapio())
         return leia.close()
-    } else if (opcao == 2){
+    } else if (opcao == 2) {
         console.log()
         console.log(adicionarPedidos())
         return leia.close
-    } else if (opcao == 3){
+    } else if (opcao == 3) {
         console.log()
-         console.log(dicionarNovosItens())
-         return leia.close
+        console.log(dicionarNovosItens())
+        return leia.close
     }
 })
 
 const cardapio = () => {
-    return listaDoCardapio
+    console.log(`Cardápio`)
+    console.log()
+    for(let i = 0; i < listaDoCardapio.length; i++) {
+        console.log(listaDoCardapio[i])
+    }
 }
 
 const adicionarNovosItens = () => {
     let item;
-    leia.question("Qual item você deseja adicionar? ", input =>{
+    leia.question("Qual item você deseja adicionar? ", input => {
         item = input;
-        let itemComAPrimeiraLetraMaiuscula = `${item.charAt(0).toLowerCase}${item.substring(1)}`    
+        let itemComAPrimeiraLetraMaiuscula = `${item.charAt(0).toLowerCase}${item.substring(1)}`
         listaDoCardapio.push(itemComAPrimeiraLetraMaiuscula)
         return "Item adicionado"
     })
@@ -64,13 +69,13 @@ const adicionarNovosItens = () => {
 }
 
 const removerItensCardapio = () => {
-    
+
     let saborQueSeraExcluido;
     leia.question("Qual item você quer remover? ", input => {
         saborQueSeraExcluido = input;
         let saborQueSeraExcluidoEmMinusculo = saborQueSeraExcluido.toLowerCase()
-        for(let i = 0; i < listaDoCardapio.length; i++){
-            if(saborQueSeraExcluidoEmMinusculo == listaDoCardapio[i].toLowerCase()){
+        for (let i = 0; i < listaDoCardapio.length; i++) {
+            if (saborQueSeraExcluidoEmMinusculo == listaDoCardapio[i].toLowerCase()) {
                 delete listaDoCardapio[i]
                 console.log()
                 console.log(`O sabor de '${saborQueSeraExcluido}'foi removido com sucesso do cardápio`)
@@ -80,15 +85,17 @@ const removerItensCardapio = () => {
     })
 }
 
-const adicionarPedidos = () => { 
+const adicionarPedidos = () => {
     let sabor;
     let quantidade;
-    
+
 }
 const verListaDePedidos = () => { }
 const verListaDeFuncionarios = () => { }
 const adicionarNovoFuncionarioNaLista = () => { }
 const removerFuncionarioNaLista = () => { }
+
+
 
 
 
