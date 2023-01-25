@@ -43,7 +43,7 @@ leia.question(`Olá, o que deseja?
         return leia.close
     } else if (opcao == 3) {
         console.log()
-        console.log(dicionarNovosItens())
+        console.log(adicionarNovosItens())
         return leia.close
     }
 })
@@ -60,7 +60,7 @@ const adicionarNovosItens = () => {
     let item;
     leia.question("Qual item você deseja adicionar? ", input => {
         item = input;
-        let itemComAPrimeiraLetraMaiuscula = `${item.charAt(0).toLowerCase}${item.substring(1)}`
+        let itemComAPrimeiraLetraMaiuscula = `${item.charAt(0).toUpperCase}${item.substring(1)}`
         listaDoCardapio.push(itemComAPrimeiraLetraMaiuscula)
         return "Item adicionado"
     })
