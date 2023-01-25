@@ -64,8 +64,6 @@ const adicionarNovosItens = () => {
         listaDoCardapio.push(itemComAPrimeiraLetraMaiuscula)
         return "Item adicionado"
     })
-    listaDoCardapio.push()
-    return "Item adicionado"
 }
 
 const removerItensCardapio = () => {
