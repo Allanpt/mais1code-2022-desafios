@@ -21,7 +21,7 @@ let opcao;
 leia.question(`Olá, o que deseja? 
 
     1 - Ver cardápio
-    2 - Adicionar pedidos
+    2 - Adicionar pedido
     3 - Adicionar novos itens
     4 - Remover itens do cardápio
     5 - Ver lista de pedidos
@@ -39,7 +39,7 @@ leia.question(`Olá, o que deseja?
         return leia.close()
     } else if (opcao == 2) {
         console.log()
-        console.log(adicionarPedidos())
+        console.log(adicionarPedido())
         return leia.close
     } else if (opcao == 3) {
         console.log()
@@ -83,9 +83,21 @@ const removerItensCardapio = () => {
     })
 }
 
-const adicionarPedidos = () => {
+const adicionarPedido = () => {
     let sabor;
     let quantidade;
+    console.log(`Cardápio`)
+    console.log()
+    for(let i = 0; i < listaDoCardapio.length; i++) {
+        console.log(`${i+1} ${listaDoCardapio[i]}`)
+    }
+    console.log()
+    leia.question(`Qual item você vai querer? 
+    Digite um número: `, input =>{
+        sabor = input
+        leia.close()
+    })
+    
 
 }
 const verListaDePedidos = () => { }
