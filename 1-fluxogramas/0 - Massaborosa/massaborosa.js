@@ -11,13 +11,18 @@ Quero poder ver a lista de funcionários.
 Quero poder adicionar um novo funcionário a lista de funcionários.
 Quero poder remover um funcionário da lista de funcionários.
 */
+let opcao;
+let sabor = []
+let quantidade = []
+let pedido = []
+let funcionarios = []
 let listaDoCardapio = ["Calabresa", "Portuguesa", "Mussarela", "Frango", "Atum"]
 
 let leia = require('readline').createInterface({
     input: process.stdin,
     output: process.stdout
 });
-let opcao;
+
 leia.question(`Olá, o que deseja? 
 
     1 - Ver cardápio
@@ -45,13 +50,33 @@ leia.question(`Olá, o que deseja?
         console.log()
         console.log(adicionarNovosItens())
         return leia.close
+    } else if (opcao == 4) {
+        console.log()
+        console.log(removerItensCardapio())
+        return leia.close
+    }  else if (opcao == 5) {
+        console.log()
+        console.log(verListaDePedidos())
+        return leia.close
+    } else if (opcao == 6) {
+        console.log()
+        console.log(verListaDeFuncionarios())
+        return leia.close 
+    } else if (opcao == 7) {
+        console.log()
+        console.log(adicionarNovoFuncionarioNaLista())
+        return leia.close
+    } else if (opcao == 8) {
+        console.log()
+        console.log(removerFuncionarioNaLista())
+        return leia.close
     }
 })
 
 const cardapio = () => {
     console.log(`Cardápio`)
     console.log()
-    for(let i = 0; i < listaDoCardapio.length; i++) {
+    for (let i = 0; i < listaDoCardapio.length; i++) {
         console.log(listaDoCardapio[i])
     }
 }
@@ -84,26 +109,74 @@ const removerItensCardapio = () => {
 }
 
 const adicionarPedido = () => {
-    let sabor;
-    let quantidade;
     console.log(`Cardápio`)
     console.log()
-    for(let i = 0; i < listaDoCardapio.length; i++) {
-        console.log(`${i+1} ${listaDoCardapio[i]}`)
+    for (let i = 0; i < listaDoCardapio.length; i++) {
+        console.log(`${i + 1} ${listaDoCardapio[i]}`)
     }
     console.log()
     leia.question(`Qual item você vai querer? 
-    Digite um número: `, input =>{
-        sabor = input
-        leia.close()
+    Digite um número: `, input => {
+        sabor.push(Number(input) - 1)
+
+        console.log()
+        leia.question(`Quantidade?: `, input => {
+            quantidade.push(Number(input))
+            leia.close()
+
+            pedido.push(`Pedido ${pedido.length + 1}`)
+            console.log(`Pedido Adicionado com sucesso`)
+
+        })
     })
-    
+
+
+
 
 }
-const verListaDePedidos = () => { }
-const verListaDeFuncionarios = () => { }
-const adicionarNovoFuncionarioNaLista = () => { }
-const removerFuncionarioNaLista = () => { }
+
+const verListaDePedidos = () => {
+    for (let i = 0; i < pedido.length; i++) {
+        console.log(`${pedido[i]}
+        Sabor: ${sabor[i]}
+        Quantidade: ${quantidade[i]}`)
+        console.log()
+        
+    }
+}
+
+const verListaDeFuncionarios = () => {
+    console.log(`Funcionários:`)
+    console.log()
+    for(let i = 0; i < funcionarios.length; i++){
+        console.log(`${funcionarios[i]}`)
+    }
+    leia.close()
+ }
+const adicionarNovoFuncionarioNaLista = () => {
+    leia.question(`Qual funcionário você quer adicionar?
+    Digite o nome: `, input =>{
+        funcionarios.push(String(input))
+        console.log(`Novo funcionário adicionado com sucesso`)
+        leia.close()
+    })
+ }
+const removerFuncionarioNaLista = () => {
+    let funcionarioQueSeraExcluido;
+    leia.question("Qual funcionário você quer remover? ", input => {
+        funcionarioQueSeraExcluido = input;
+        let funcionarioQueSeraExcluidoEmMinusculo = funcionarioQueSeraExcluido.toLowerCase()
+        for (let i = 0; i < funcionarios.length; i++) {
+            if (funcionarioQueSeraExcluidoEmMinusculo == funcionarios[i].toLowerCase()) {
+                delete funcionarios[i]
+                console.log()
+                console.log(`O funcionário '${funcionarioQueSeraExcluido}'foi desligado com sucesso`)
+            }
+        }
+        console.log(verListaDeFuncionarios())
+        leia.close()
+    })
+ }
 
 
 
